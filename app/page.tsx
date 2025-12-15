@@ -526,119 +526,108 @@ export default function Page() {
                     Compare your options
                   </h2>
                   <p className="mt-2 text-sm text-white/70">
-                    Why FrontFolk gives you senior frontend ownership — without
-                    hiring risk.
+                    Same outcome as hiring — without hiring risk.
                   </p>
                 </div>
 
-                {/* Comparison card */}
-                <div className="mt-8 ff-card ff-border rounded-3xl overflow-hidden">
-                  {/* Header */}
-                  <div className="grid grid-cols-4 gap-0 border-b border-white/10 bg-white/5">
-                    {["Option", "Cost", "Speed", "Risk / Overhead"].map((h) => (
-                      <div
-                        key={h}
-                        className="p-4 text-xs font-semibold text-white/70"
-                      >
-                        {h}
-                      </div>
-                    ))}
-                  </div>
+                {/* Scroll wrapper (mobile + desktop) */}
+                <div className="mt-8 overflow-x-auto">
+                  {/* Min width ensures desktop-like columns even on mobile */}
+                  <div className="min-w-[880px] ff-card ff-border rounded-3xl overflow-hidden">
+                    {/* Header */}
+                    <div className="grid grid-cols-4 border-b border-white/10 bg-white/5">
+                      {["Option", "Cost", "Speed", "Risk / Overhead"].map(
+                        (h) => (
+                          <div
+                            key={h}
+                            className="p-4 text-xs font-semibold text-white/70"
+                          >
+                            {h}
+                          </div>
+                        )
+                      )}
+                    </div>
 
-                  {/* Row */}
-                  {[
-                    {
-                      name: "Hire full-time",
-                      desc: "Senior frontend engineer",
-                      cost: "$8k–$12k / month",
-                      speed: "Slow start",
-                      risk: "High management & hiring risk",
-                    },
-                    {
-                      name: "Agency",
-                      desc: "Team-based delivery",
-                      cost: "$6k–$10k / month",
-                      speed: "Medium",
-                      risk: "Process & handoff overhead",
-                    },
-                    {
-                      name: "Freelancers",
-                      desc: "Hourly or per task",
-                      cost: "$2k–$5k / month",
-                      speed: "Inconsistent",
-                      risk: "You manage everything",
-                    },
-                  ].map((row) => (
-                    <div
-                      key={row.name}
-                      className="grid grid-cols-4 border-b border-white/10 last:border-none"
-                    >
-                      <div className="p-4">
-                        <div className="text-sm font-semibold">{row.name}</div>
-                        <div className="mt-1 text-xs text-white/60">
-                          {row.desc}
+                    {/* Rows */}
+                    {[
+                      {
+                        name: "Hire full-time",
+                        desc: "Senior frontend engineer",
+                        cost: "$8k–$12k / month + hiring time",
+                        speed: "Slow start (weeks to months)",
+                        risk: "High: onboarding + management + bad hire risk",
+                      },
+                      {
+                        name: "Agency",
+                        desc: "Team-based delivery",
+                        cost: "$6k–$10k / month",
+                        speed: "Medium (depends on staffing)",
+                        risk: "Medium: handoffs + process overhead",
+                      },
+                      {
+                        name: "Freelancers",
+                        desc: "Hourly / per task",
+                        cost: "$2k–$5k / month",
+                        speed: "Inconsistent (context switching)",
+                        risk: "High: you manage everything",
+                      },
+                    ].map((row) => (
+                      <div
+                        key={row.name}
+                        className="grid grid-cols-4 border-b border-white/10 last:border-none"
+                      >
+                        {/* Sticky first column (optional but recommended for mobile) */}
+                        <div className="p-4 bg-[#070A12]/70 sticky left-0 z-10 border-r border-white/10">
+                          <div className="text-sm font-semibold">
+                            {row.name}
+                          </div>
+                          <div className="mt-1 text-xs text-white/60">
+                            {row.desc}
+                          </div>
+                        </div>
+
+                        <div className="p-4 text-sm text-white/80">
+                          {row.cost}
+                        </div>
+                        <div className="p-4 text-sm text-white/80">
+                          {row.speed}
+                        </div>
+                        <div className="p-4 text-sm text-white/80">
+                          {row.risk}
                         </div>
                       </div>
-                      <div className="p-4 text-sm text-white/80">
-                        {row.cost}
-                      </div>
-                      <div className="p-4 text-sm text-white/80">
-                        {row.speed}
-                      </div>
-                      <div className="p-4 text-sm text-white/80">
-                        {row.risk}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
 
-                  {/* Highlight row */}
-                  <div className="grid grid-cols-4 bg-gradient-to-r from-violet-500/15 via-sky-500/10 to-cyan-400/15">
-                    <div className="p-4">
-                      <div className="flex items-center gap-2 text-sm font-semibold">
-                        FrontFolk
-                        <span className="rounded-full bg-white/15 px-2 py-0.5 text-[11px] text-white/80">
-                          Best fit
-                        </span>
+                    {/* Highlight row */}
+                    <div className="grid grid-cols-4 bg-gradient-to-r from-violet-500/15 via-sky-500/10 to-cyan-400/15">
+                      <div className="p-4 bg-[#070A12]/30">
+                        <div className="flex items-center gap-2 text-sm font-semibold">
+                          FrontFolk
+                          <span className="rounded-full bg-white/15 px-2 py-0.5 text-[11px] text-white/80">
+                            Best fit
+                          </span>
+                        </div>
+                        <div className="mt-1 text-xs text-white/70">
+                          Dedicated frontend ownership
+                        </div>
                       </div>
-                      <div className="mt-1 text-xs text-white/70">
-                        Dedicated frontend ownership
+                      <div className="p-4 text-sm font-medium text-white">
+                        $5,000 / month
                       </div>
-                    </div>
-                    <div className="p-4 text-sm font-medium text-white">
-                      $5,000 / month
-                    </div>
-                    <div className="p-4 text-sm font-medium text-white">
-                      Fast (start in ~7 days)
-                    </div>
-                    <div className="p-4 text-sm font-medium text-white">
-                      Low risk · Cancel anytime
+                      <div className="p-4 text-sm font-medium text-white">
+                        Fast (start in ~7 days)
+                      </div>
+                      <div className="p-4 text-sm font-medium text-white">
+                        Low risk · Cancel anytime
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* CTA under comparison */}
-                <div className="mt-8 ff-card ff-border rounded-3xl p-6 sm:p-7 text-center">
-                  <p className="text-sm text-white/70">
-                    If frontend is blocking shipping, UX, or conversions,
-                    FrontFolk removes the bottleneck with focused ownership.
-                  </p>
-                  <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
-                    <a
-                      className="ff-btn-primary ff-glow px-7 py-3 text-sm"
-                      href={CALENDLY}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Book 15-min call
-                    </a>
-                    <a
-                      className="ff-btn-secondary px-7 py-3 text-sm"
-                      href="#pricing"
-                    >
-                      Review pricing
-                    </a>
-                  </div>
-                </div>
+                {/* tiny hint for mobile */}
+                <p className="mt-3 text-center text-xs text-white/50 md:hidden">
+                  Swipe horizontally to view all columns →
+                </p>
               </div>
             </Container>
           </section>
