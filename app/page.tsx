@@ -76,7 +76,7 @@ export default function Page() {
           <div className="flex items-center justify-between py-4">
             {/* TEXT LOGO ONLY */}
             <a href="#" className="select-none">
-              <span className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+              <span className="font-semibold tracking-tight text-white text-2xl sm:text-3xl md:text-2xl">
                 Front
                 <span className="bg-gradient-to-r from-violet-400 to-sky-400 bg-clip-text text-transparent">
                   Folk
@@ -100,9 +100,6 @@ export default function Page() {
             </nav>
 
             <div className="flex items-center gap-2">
-              {/* <a className="ff-btn-secondary px-4 py-2.5" href="#pricing">
-                View pricing
-              </a> */}
               <a
                 className="ff-btn-primary ff-glow px-5 py-2.5"
                 href={CALENDLY}
@@ -212,7 +209,7 @@ export default function Page() {
               <div className="mt-6 flex items-center justify-between rounded-2xl bg-white/5 p-4 ff-border">
                 <div>
                   <div className="text-xs text-white/60">Starting at</div>
-                  <div className="text-xl font-semibold">$5,000 / month</div>
+                  <div className="text-xl font-semibold">$4,000 / month</div>
                 </div>
                 <a
                   className="ff-btn-primary px-5 py-2.5 text-sm"
@@ -531,7 +528,7 @@ export default function Page() {
                 </div>
 
                 {/* Scroll wrapper (mobile + desktop) */}
-                <div className="mt-8 overflow-x-auto">
+                <div className="mt-8 overflow-x-auto ff-scroll">
                   {/* Min width ensures desktop-like columns even on mobile */}
                   <div className="min-w-[880px] ff-card ff-border rounded-3xl overflow-hidden">
                     {/* Header */}

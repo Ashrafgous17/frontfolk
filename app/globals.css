@@ -80,3 +80,50 @@ body {
   outline-offset: 3px;
   border-radius: 10px;
 }
+
+/* =====================================================
+   Custom Horizontal Scrollbar (Comparison Section)
+   ===================================================== */
+
+/* Firefox */
+.ff-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124, 58, 237, 0.45) transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+.ff-scroll::-webkit-scrollbar {
+  height: 8px; /* horizontal scrollbar height */
+}
+
+.ff-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ff-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.55),
+    rgba(59, 130, 246, 0.55)
+  );
+  border-radius: 999px;
+}
+
+.ff-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.75),
+    rgba(59, 130, 246, 0.75)
+  );
+}
+
+/* Optional: subtle fade at edges to hint scroll */
+/* .ff-scroll {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+} */
