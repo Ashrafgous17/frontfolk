@@ -630,7 +630,7 @@ export default function Page() {
           </section>
 
           {/* FAQ */}
-          <div id="faq" className="mt-14">
+          <div id="faq" className="mt-16">
             <div className="text-center">
               <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                 FAQ
@@ -640,31 +640,74 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="mt-6 grid gap-4 lg:grid-cols-2">
-              <FAQ
-                q="Is this unlimited requests?"
-                a="No. It’s dedicated capacity. We prioritize high-impact tasks and ship steadily—without quality dropping."
-              />
-              <FAQ
-                q="How fast can you start?"
-                a="Usually within 7 days depending on availability. I keep only 1–2 clients active."
-              />
-              <FAQ
-                q="Do you do backend work?"
-                a="Frontend only. Small integrations are okay, but backend-heavy work is out of scope unless agreed separately."
-              />
-              <FAQ
-                q="How do we communicate?"
-                a="Async-first via Slack or email, with weekly updates. Meetings only when necessary."
-              />
-              <FAQ
-                q="Can we cancel anytime?"
-                a="Yes. You can cancel with 30 days’ notice. No long-term lock-in."
-              />
-              <FAQ
-                q="Who is this best for?"
-                a="SaaS & B2B teams with backend handled who need frontend velocity, UI consistency, responsiveness, and performance improvements."
-              />
+            {/* ONE COLUMN – centered, readable */}
+            <div className="mt-8 mx-auto max-w-3xl grid gap-4">
+              {[
+                {
+                  q: "Is this unlimited requests?",
+                  a: "No. It’s dedicated capacity. We prioritize high-impact tasks and ship steadily without sacrificing quality.",
+                },
+                {
+                  q: "How fast can you start?",
+                  a: "Usually within 7 days depending on availability. I work with only 1–2 clients at a time.",
+                },
+                {
+                  q: "Do you do backend work?",
+                  a: "Frontend only. Small integrations are okay, but backend-heavy work is out of scope unless agreed separately.",
+                },
+                {
+                  q: "How do we communicate?",
+                  a: "Async-first via Slack or email, with weekly updates. Meetings only when necessary.",
+                },
+                {
+                  q: "Can we cancel anytime?",
+                  a: "Yes. You can cancel with 30 days’ notice. No long-term lock-in.",
+                },
+                {
+                  q: "Who is this best for?",
+                  a: "SaaS & B2B teams with backend handled who need frontend velocity, UI consistency, responsiveness, and performance improvements.",
+                },
+              ].map((item) => (
+                <details
+                  key={item.q}
+                  className="group relative overflow-hidden rounded-3xl ff-card ff-border transition"
+                >
+                  {/* subtle gradient glow on open */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300
+          group-open:opacity-100
+          bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_60%)]"
+                  />
+
+                  <summary className="relative z-10 flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
+                    <div>
+                      <div className="text-sm font-semibold text-white">
+                        {item.q}
+                      </div>
+                    </div>
+
+                    {/* Plus icon */}
+                    <span
+                      className="shrink-0 rounded-2xl ff-border bg-white/5 px-3 py-2 text-white/70
+            transition-transform duration-300 group-open:rotate-45 group-open:bg-white/10"
+                    >
+                      +
+                    </span>
+                  </summary>
+
+                  {/* Answer */}
+                  <div className="relative z-10 px-5 pb-5 sm:px-6 sm:pb-6">
+                    <p className="text-sm leading-6 text-white/70">{item.a}</p>
+                  </div>
+
+                  {/* bottom divider */}
+                  <div
+                    aria-hidden
+                    className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                  />
+                </details>
+              ))}
             </div>
           </div>
 
