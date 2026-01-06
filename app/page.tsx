@@ -121,7 +121,7 @@ export default function Page() {
               <Badge>Only 1–2 client slots at a time</Badge>
 
               <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl">
-                A dedicated frontend engineer —
+                A dedicated frontend engineer
                 <span className="block bg-gradient-to-r from-violet-400 to-sky-400 bg-clip-text text-transparent">
                   without hiring or long contracts.
                 </span>
@@ -130,7 +130,7 @@ export default function Page() {
               <p className="mt-5 text-base leading-7 text-white/70">
                 FrontFolk helps SaaS & B2B teams ship faster with clean UI
                 execution: Figma → production code, responsiveness, performance,
-                and UI polish. You get ownership and speed — minus freelancer
+                and UI polish. You get ownership and speed minus freelancer
                 chaos.
               </p>
 
@@ -273,7 +273,7 @@ export default function Page() {
           <div className="mt-7 grid gap-4 md:grid-cols-4">
             <Feature
               title="1) Subscribe"
-              desc="Reserve a slot. I keep only 1–2 clients active for quality and speed."
+              desc="Reserve a slot. I keep only 1-2 clients active for quality and speed."
             />
             <Feature
               title="2) Onboard"
@@ -285,7 +285,7 @@ export default function Page() {
             />
             <Feature
               title="4) Weekly updates"
-              desc="Clear progress, next steps, and alignment — without management overhead."
+              desc="Clear progress, next steps, and alignment  without management overhead."
             />
           </div>
         </Container>
@@ -308,7 +308,7 @@ export default function Page() {
                 {[
                   [
                     "Ownership mindset",
-                    "I take responsibility for frontend quality and delivery — not just tasks.",
+                    "I take responsibility for frontend quality and delivery not just tasks.",
                   ],
                   [
                     "Less founder overhead",
@@ -395,7 +395,7 @@ export default function Page() {
                     Dedicated Frontend Engineer
                   </div>
                   <p className="mt-2 text-sm text-white/70 leading-6">
-                    Frontend ownership without hiring — fast shipping, clean UI,
+                    Frontend ownership without hiring fast shipping, clean UI,
                     and consistent delivery for SaaS & B2B teams.
                   </p>
                 </div>
