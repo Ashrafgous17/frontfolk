@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 const CALENDLY = "https://calendly.com/your-link/intro"; // replace
 import { FaCheck } from "react-icons/fa";
 import Link from "next/link";
+import Navbar from "./components/Navbar";
 
 /** --------------------------------
  *  UI helpers
@@ -94,66 +95,10 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   );
 }
 
-function Check({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="ff-border flex items-start gap-3 rounded-2xl bg-black/20 p-4">
-      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-xs">
-        ✓
-      </span>
-      <p className="text-sm leading-6 text-white/80">{children}</p>
-    </div>
-  );
-}
-
-function SectionHeading({ title, desc }: { title: string; desc?: string }) {
-  return (
-    <div className="text-center">
-      <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-        {title}
-      </h2>
-      {desc ? (
-        <p className="mt-2 text-sm text-white/70 leading-6">{desc}</p>
-      ) : null}
-    </div>
-  );
-}
-
 /** --------------------------------
  *  Page
  *  -------------------------------- */
 export default function Page() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const nav = useMemo(
-    () => [
-      { href: "#how", label: "How it works" },
-      { href: "#why", label: "Why FrontFolk" },
-      { href: "#pricing", label: "Pricing" },
-      { href: "#comparison", label: "Comparison" },
-      { href: "#faq", label: "FAQ" },
-    ],
-    []
-  );
-
-  // lock scroll when menu is open
-  useEffect(() => {
-    if (!menuOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [menuOpen]);
-
-  // close on escape
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#070A12] text-white">
       {/* Background */}
@@ -164,47 +109,7 @@ export default function Page() {
       </div>
 
       {/* NAV */}
-      <header className="relative z-10 border-b border-white/10 bg-[#070A12]/60 backdrop-blur">
-        <Container>
-          <div className="flex items-center justify-between py-4">
-            {/* TEXT LOGO ONLY */}
-            <a href="#" className="select-none">
-              <span className="font-semibold tracking-tight text-white text-3xl sm:text-4xl md:text-2xl">
-                Front
-                <span className="bg-gradient-to-r from-violet-400 to-sky-400 bg-clip-text text-transparent">
-                  Folk
-                </span>
-              </span>
-            </a>
-
-            <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
-              <a className="hover:text-white" href="#how">
-                How it works
-              </a>
-              <a className="hover:text-white" href="#why">
-                Why FrontFolk
-              </a>
-              <a className="hover:text-white" href="#pricing">
-                Pricing
-              </a>
-              <a className="hover:text-white" href="#faq">
-                FAQ
-              </a>
-            </nav>
-
-            <div className="flex items-center gap-2">
-              <a
-                className="ff-btn-primary ff-glow px-5 py-2.5"
-                href={CALENDLY}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Book 15-min call
-              </a>
-            </div>
-          </div>
-        </Container>
-      </header>
+      <Navbar calendly={CALENDLY} />
 
       {/* HERO */}
       <section className="relative z-10 pt-14 pb-12 sm:pt-20 sm:pb-16">
@@ -254,17 +159,84 @@ export default function Page() {
         </Container>
       </section>
 
-      {/* TRUST STRIP */}
-      <section className="relative z-10 mt-14">
+      {/* OUTCOME STRIP (replaces TRUST STRIP) */}
+      <section className="relative z-10 mt-10 sm:mt-12">
         <Container>
-          <div className="ff-border rounded-3xl bg-white/5 p-7 sm:p-8">
-            <p className="text-lg leading-6 text-white/70 text-center">
-              If your product’s frontend is slowing growth (shipping, UX,
-              conversions), FrontFolk replaces the need to hire by giving you{" "}
-              <span className="font-medium text-white">
-                dedicated ownership
-              </span>{" "}
-              and consistent delivery.
+          <div className="mx-auto max-w-5xl">
+            <div className="ff-border rounded-3xl bg-white/5 p-5 sm:p-7 backdrop-blur">
+              <div className="grid gap-5 lg:grid-cols-3 lg:items-center">
+                {/* Left: positioning */}
+                <div className="lg:col-span-1">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80" />
+                    Best for SaaS teams shipping weekly
+                  </div>
+
+                  <h3 className="mt-3 text-lg font-semibold tracking-tight text-white sm:text-xl">
+                    Turn your UI backlog into weekly releases.
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-white/70">
+                    Dedicated frontend ownership that improves UX, speed, and
+                    conversions—without hiring or managing.
+                  </p>
+                </div>
+
+                {/* Middle: outcomes */}
+                <div className="lg:col-span-1">
+                  <div className="grid gap-3">
+                    <div className="ff-border rounded-2xl bg-black/20 p-4">
+                      <div className="text-sm font-semibold text-white">
+                        Ship faster
+                      </div>
+                      <p className="mt-1 text-sm leading-6 text-white/70">
+                        Weekly momentum on UI, components, and flows.
+                      </p>
+                    </div>
+
+                    <div className="ff-border rounded-2xl bg-black/20 p-4">
+                      <div className="text-sm font-semibold text-white">
+                        Cleaner UX
+                      </div>
+                      <p className="mt-1 text-sm leading-6 text-white/70">
+                        Less friction, more clarity, better trust signals.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: proof + CTA nudge */}
+                <div className="lg:col-span-1">
+                  <div className="ff-border rounded-2xl bg-black/20 p-4">
+                    <div className="text-sm font-semibold text-white">
+                      Low-risk setup
+                    </div>
+                    <div className="mt-2 grid gap-2 text-sm text-white/70">
+                      <div>• Start in ~7 days</div>
+                      <div>• Async-first (minimal meetings)</div>
+                      <div>• Cancel anytime</div>
+                    </div>
+
+                    <a
+                      href={CALENDLY}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex w-full cursor-pointer items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#070A12] shadow-lg transition hover:shadow-xl"
+                    >
+                      Book 15-min intro call →
+                    </a>
+
+                    <p className="mt-2 text-center text-xs text-white/50">
+                      1–2 clients at a time to maintain quality
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Optional tiny helper line (nice flow) */}
+            <p className="mx-auto mt-3 max-w-3xl text-center text-xs text-white/45">
+              Not sure if it fits? The intro call is a quick scope + roadmap
+              check.
             </p>
           </div>
         </Container>
@@ -305,6 +277,7 @@ export default function Page() {
       </section>
 
       {/* WHY */}
+      {/* ========== WHY US ========== */}
       <section id="why" className="relative z-10 mt-16 sm:mt-22">
         <Container>
           <div className="mx-auto max-w-5xl">
@@ -356,11 +329,28 @@ export default function Page() {
                 </div>
               ))}
             </div>
+          </div>
+        </Container>
+      </section>
 
-            {/* Minimal “fit” split */}
-            <div className="mt-8 grid gap-4 lg:grid-cols-2">
-              <div className="ff-border rounded-2xl bg-black/20 p-5">
-                <div className="text-sm font-semibold">Best for</div>
+      {/* ========== WHO FITS THIS ========== */}
+      <section id="fit" className="relative z-10 mt-16 sm:mt-22">
+        <Container>
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center">
+              <Badge variant="success">Who fits this</Badge>
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+                A great fit when frontend is the bottleneck
+              </h2>
+              <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/70">
+                If you’ve got product momentum but UI execution slows you down,
+                this is built for you.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 lg:grid-cols-2 pb-2">
+              <div className="ff-border rounded-2xl p-5">
+                <div className="text-sm font-semibold text-white">Best for</div>
                 <div className="mt-3 grid gap-2 text-sm text-white/70">
                   <div>• SaaS founders with a UI backlog</div>
                   <div>• Backend covered, frontend is the bottleneck</div>
@@ -368,8 +358,10 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="ff-border rounded-2xl bg-black/20 p-5">
-                <div className="text-sm font-semibold">Not ideal for</div>
+              <div className="ff-border rounded-2xl p-5">
+                <div className="text-sm font-semibold text-white">
+                  Not ideal for
+                </div>
                 <div className="mt-3 grid gap-2 text-sm text-white/70">
                   <div>• “Unlimited requests” expectations</div>
                   <div>• Backend/DevOps as primary need</div>
@@ -379,18 +371,9 @@ export default function Page() {
             </div>
           </div>
         </Container>
-
-        {/* soft glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full
-    bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.10),transparent_60%)] blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full
-    bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_60%)] blur-3xl"
-        />
+        <div className="relative z-10 mx-auto max-w-5xl">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        </div>
       </section>
 
       <section
@@ -405,20 +388,12 @@ export default function Page() {
 
         <Container>
           {/* Header */}
-          <div className="relative mx-auto max-w-2xl text-center">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs sm:text-sm text-white/80 backdrop-blur">
-              <span className="inline-flex h-2 w-2 rounded-full bg-violet-400 shadow-[0_0_0_6px_rgba(124,58,237,0.20)]" />
-              <span className="font-medium">FrontFolk Pricing</span>
-              <span className="text-white/50">•</span>
-              <span className="text-white/60">
-                Choose a plan that matches your UI workload
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <div className="text-center">
+            <Badge variant="success">Frontfolk Pricing</Badge>
+            <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
               Frontend delivery without hiring
             </h2>
-            <p className="mt-4 text-white/65 text-base sm:text-lg">
+            <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/70">
               Dedicated capacity for ongoing shipping, or a fixed-scope package
               for speed, responsiveness, and Figma → development.
             </p>
@@ -489,7 +464,7 @@ export default function Page() {
             {/* FULL-TIME (PRIMARY) */}
             <div className="relative h-full flex flex-col rounded-3xl border border-white/25 bg-white/[0.06] p-7 sm:p-8 backdrop-blur shadow-[0_20px_60px_rgba(0,0,0,0.55)]">
               <div className="absolute -top-3 left-6">
-                <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border bg-gradient-to-r from-violet-400 to-sky-400 text-[#070A12] border-white/30">
+                <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border bg-gradient-to-r from-violet-500 to-sky-500 text-[#070A12] border-white/30">
                   Most teams choose
                 </span>
               </div>
@@ -545,7 +520,7 @@ export default function Page() {
               <div className="mt-auto pt-7">
                 <Link
                   href={CALENDLY}
-                  className="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition bg-gradient-to-r from-violet-400 to-sky-400 text-[#070A12] shadow-lg hover:-translate-y-0.5"
+                  className="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition ff-btn-primary ff-glow  text-[#070A12] shadow-lg hover:-translate-y-0.5"
                 >
                   Book 15-min strategy call →
                 </Link>
@@ -620,18 +595,21 @@ export default function Page() {
       </section>
 
       {/* COMPARISON */}
-      <section id="comparison" className="relative z-10 mt-4 sm:mt-6">
+      <section id="comparison" className="relative z-10 mt-10 sm:mt-14">
         <Container>
-          <div className="relative">
+          <div className="mx-auto max-w-5xl">
+            {/* Heading (match your style) */}
             <div className="text-center">
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <Badge variant="success">Comparison</Badge>
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
                 Compare your options
               </h2>
-              <p className="mt-2 text-sm text-white/70">
+              <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/70">
                 Same outcome as hiring — without hiring risk.
               </p>
             </div>
 
+            {/* Horizontal scroll (DO NOT TOUCH behavior) */}
             <div className="mt-8 overflow-x-auto ff-scroll">
               <div className="ff-card ff-border min-w-[880px] overflow-hidden rounded-3xl">
                 <div className="grid grid-cols-4 border-b border-white/10 bg-white/5">
@@ -673,7 +651,9 @@ export default function Page() {
                     className="grid grid-cols-4 border-b border-white/10 last:border-none"
                   >
                     <div className="sticky left-0 z-10 border-r border-white/10 bg-[#070A12]/70 p-4">
-                      <div className="text-sm font-semibold">{row.name}</div>
+                      <div className="text-sm font-semibold text-white">
+                        {row.name}
+                      </div>
                       <div className="mt-1 text-xs text-white/60">
                         {row.desc}
                       </div>
@@ -686,7 +666,7 @@ export default function Page() {
 
                 <div className="grid grid-cols-4 bg-gradient-to-r from-violet-500/15 via-sky-500/10 to-cyan-400/15">
                   <div className="p-4 bg-[#070A12]/30">
-                    <div className="flex items-center gap-2 text-sm font-semibold">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
                       FrontFolk
                       <span className="rounded-full bg-white/15 px-2 py-0.5 text-[11px] text-white/80">
                         Best fit
@@ -717,64 +697,80 @@ export default function Page() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="relative z-10 py-14 sm:py-20">
+      {/* FAQ */}
+      <section id="faq" className="relative z-10 mt-10 sm:mt-14 pb-14 sm:pb-20">
         <Container>
-          <SectionHeading
-            title="FAQ"
-            desc="Quick answers before you book a call."
-          />
-
-          <div className="mx-auto mt-10 max-w-3xl space-y-4">
-            <FAQItem
-              q="Is this unlimited work?"
-              a="No. You get 30–35 dedicated hours/week of senior frontend development. We prioritize high-impact work and ship consistently."
-            />
-            <FAQItem
-              q="How fast can you start?"
-              a="Usually within ~7 days if a slot is available."
-            />
-            <FAQItem
-              q="Do you work with our existing codebase?"
-              a="Yes. I work inside your existing React/Next.js/TypeScript codebase and follow your patterns."
-            />
-            <FAQItem
-              q="How do we communicate?"
-              a="Async-first via Slack/email with clear weekly updates. Meetings only when necessary."
-            />
-            <FAQItem
-              q="Can we cancel anytime?"
-              a="Yes. Cancel with 30 days notice. No lock-in contracts."
-            />
-          </div>
-
-          {/* Final CTA */}
-          <div className="mt-14 ff-card ff-border ff-glow rounded-3xl p-8 text-center sm:p-10">
-            <h3 className="text-2xl font-semibold tracking-tight">
-              Want frontend handled properly?
-            </h3>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-white/70">
-              If your frontend backlog is blocking growth, FrontFolk removes the
-              bottleneck with dedicated ownership and consistent delivery.
-            </p>
-            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                className="ff-btn-primary ff-glow px-7 py-3 text-sm"
-                href={CALENDLY}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Book 15-min intro call
-              </a>
-              <a
-                className="ff-btn-secondary px-7 py-3 text-sm"
-                href="mailto:hello@frontfolk.com"
-              >
-                Email: hello@frontfolk.com
-              </a>
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center">
+              <Badge variant="success">FAQ</Badge>
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+                Quick answers before you book a call
+              </h2>
+              <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/70">
+                Everything you need to know about how FrontFolk works.
+              </p>
             </div>
-            <p className="mt-5 text-xs text-white/50">
-              Slots are limited to maintain quality (1–2 clients at a time).
-            </p>
+
+            <div className="mx-auto mt-10 max-w-3xl space-y-4">
+              <FAQItem
+                q="Is this unlimited work?"
+                a="No. You get 30–35 dedicated hours/week of senior frontend development. We prioritize high-impact work and ship consistently."
+              />
+              <FAQItem
+                q="How fast can you start?"
+                a="Usually within ~7 days if a slot is available."
+              />
+              <FAQItem
+                q="Do you work with our existing codebase?"
+                a="Yes. I work inside your existing React/Next.js/TypeScript codebase and follow your patterns."
+              />
+              <FAQItem
+                q="How do we communicate?"
+                a="Async-first via Slack/email with clear weekly updates. Meetings only when necessary."
+              />
+              <FAQItem
+                q="Can we cancel anytime?"
+                a="Yes. Cancel with 30 days notice. No lock-in contracts."
+              />
+              <FAQItem
+                q="What kind of work do you typically handle?"
+                a="UI implementation, design-to-code, component systems, responsiveness fixes, performance improvements, and conversion-focused UX polish across key flows."
+              />
+              <FAQItem
+                q="What do you need from us to get started?"
+                a="Access to your repo (GitHub/GitLab), design files (Figma), and a short kickoff to align on priorities. After that, we run async with weekly updates."
+              />
+            </div>
+
+            {/* Final CTA */}
+            <div className="mt-14 ff-card ff-border ff-glow rounded-3xl p-8 text-center sm:p-10">
+              <h3 className="text-2xl font-semibold tracking-tight">
+                Want frontend handled properly?
+              </h3>
+              <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-white/70">
+                If your frontend backlog is blocking growth, FrontFolk removes
+                the bottleneck with dedicated ownership and consistent delivery.
+              </p>
+              <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+                <a
+                  className="ff-btn-primary ff-glow px-7 py-3 text-sm"
+                  href={CALENDLY}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Book 15-min intro call
+                </a>
+                <a
+                  className="ff-btn-secondary px-7 py-3 text-sm"
+                  href="mailto:hello@frontfolk.com"
+                >
+                  Email: hello@frontfolk.com
+                </a>
+              </div>
+              <p className="mt-5 text-xs text-white/50">
+                Slots are limited to maintain quality (1–2 clients at a time).
+              </p>
+            </div>
           </div>
         </Container>
       </section>
